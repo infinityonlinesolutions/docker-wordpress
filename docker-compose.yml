@@ -10,6 +10,7 @@ services:
         limits:
           cpus: ${DOCKER_WORDPRESS_MYSQL_CPU_LIMIT:-'0.5'}
           memory: ${DOCKER_WORDPRESS_MYSQL_MEMORY_LIMIT:-300M}
+    network_mode: bridge    
     networks:
       - docker-wordpress-db-net
     volumes:
@@ -40,6 +41,7 @@ services:
     networks:
       - docker-wordpress-proxy-network
       - docker-wordpress-db-net
+    network_mode: bridge  
     volumes:
       - ${DOCKER_WORDPRESS_SITE_FILES}:/var/www/html
       - ./conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
@@ -78,6 +80,7 @@ services:
       WORDPRESS_DB_USER: ${DOCKER_WORDPRESS_MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${DOCKER_WORDPRESS_MYSQL_PASSWORD}
       WORDPRESS_TABLE_PREFIX: ${DOCKER_WORDPRESS_TABLE_PREFIX}
+    network_mode: bridge      
     networks:
       - docker-wordpress-db-net
     volumes:
