@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   docker-wordpress-new-db:
-    image: ${DOCKER_WORDPRESS_DB_IMAGE:-mysql}:${DOCKER_WORDPRESS_DB_VERSION:-latest}
+    image: ${DOCKER_WORDPRESS_DB_IMAGE:-bitnami/mariadb}:${DOCKER_WORDPRESS_DB_VERSION:-latest}
     container_name: ${DOCKER_WORDPRESS_DB_CONTAINER_NAME}
     restart: unless-stopped
     deploy:
@@ -30,7 +30,7 @@ services:
   docker-wordpress-new-site:
     depends_on:
       - docker-wordpress-new-db
-    image: ${DOCKER_WORDPRESS_SITE_IMAGE:-wordpress}:${DOCKER_WORDPRESS_SITE_VERSION:-latest}
+    image: ${DOCKER_WORDPRESS_SITE_IMAGE:-bitnami/wordpress}:${DOCKER_WORDPRESS_SITE_VERSION:-latest}
     container_name: ${DOCKER_WORDPRESS_SITE_CONTAINER_NAME}
     restart: unless-stopped
     deploy:
