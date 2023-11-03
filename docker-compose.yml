@@ -89,8 +89,8 @@ services:
       - docker-wordpress-new-db
     entrypoint: wp
 
-networks:
-  docker-wordpress-proxy-network:
-    external: true
-  docker-wordpress-db-net:
+#networks:
+#  docker-wordpress-proxy-network:
+#    external: true
+#  docker-wordpress-db-net:
 
