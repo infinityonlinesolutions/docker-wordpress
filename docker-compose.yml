@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   docker-wordpress-new-db:
@@ -10,11 +10,11 @@ services:
         limits:
           cpus: ${DOCKER_WORDPRESS_MYSQL_CPU_LIMIT:-'0.5'}
           memory: ${DOCKER_WORDPRESS_MYSQL_MEMORY_LIMIT:-300M}
-    network_mode: bridge    
+#    network_mode: bridge    
 #   networks:
 #      - docker-wordpress-db-net
     volumes:
-      - ${DOCKER_WORDPRESS_DB_FILES}:/var/lib/mysql
+      - ${DOCKER_WORDPRESS_DB_FILES}:/bitnami/mariadb
     environment:
       MYSQL_ROOT_PASSWORD: ${DOCKER_WORDPRESS_MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DOCKER_WORDPRESS_MYSQL_DATABASE}
@@ -41,9 +41,9 @@ services:
 #    networks:
 #      - docker-wordpress-proxy-network
 #      - docker-wordpress-db-net
-    network_mode: bridge  
+#    network_mode: bridge  
     volumes:
-      - ${DOCKER_WORDPRESS_SITE_FILES}:/var/www/html
+      - ${DOCKER_WORDPRESS_SITE_FILES}:bitnami/wordpress
       - ./conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
     environment:
       WORDPRESS_DB_HOST: ${DOCKER_WORDPRESS_DB_HOST:-docker-wordpress-new-db}:3306
